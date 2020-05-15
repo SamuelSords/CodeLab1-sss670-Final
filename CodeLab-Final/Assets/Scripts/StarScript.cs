@@ -24,7 +24,7 @@ public class StarScript : MonoBehaviour
     {
         speed = -Random.Range(MIN_SPEED, MAX_SPEED); //give it a random speed in range
 
-        scaleChange = new Vector3(.003f, .003f, .003f);
+        scaleChange = new Vector3(.0025f, .0025f, .0025f);
 
         transform.localScale = new Vector3(.25f, .25f, 1f);
 
