@@ -8,9 +8,6 @@ public class CollectStars : MonoBehaviour
 
     public int lightValue = 1;
 
-    public GameObject item;
-
-    public AudioClip clip;
 
     const float MIN_SPEED = 0.01f; //min speed
     const float MAX_SPEED = 0.1f; //max speed
@@ -20,14 +17,17 @@ public class CollectStars : MonoBehaviour
     float speed;
     private Vector3 scaleChange;
 
-    public void OnTriggerEnter2D(Collider2D Collision)
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        Bottle bottle = Collision.GetComponent<Bottle>();
+        Bottle bottle = other.GetComponent<Bottle>();
 
         if(bottle != null)
         {
             bottle.light += lightValue;
         }
+
+        transform.position = other.GetComponent<Bottle>().transform.position;
+        transform.localScale = transform.localScale;
     }
 
     // Start is called before the first frame update
