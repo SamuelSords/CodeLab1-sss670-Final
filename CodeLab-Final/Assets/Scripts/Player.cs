@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     public static Player instance;
+
     Rigidbody2D rb;
+
+    public Text startText;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +36,11 @@ public class Player : MonoBehaviour
             characterScale.x = 5;
         }
         transform.localScale = characterScale;
+
+        if (transform.position.x > 1 && transform.position.x < 4 && transform.position.y > 2 && transform.position.y < 4)
+        {
+            startText.GetComponent<Text>().enabled = true;
+        }
     }
 }
 

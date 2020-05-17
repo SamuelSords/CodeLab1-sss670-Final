@@ -13,18 +13,6 @@ public class Bottle : MonoBehaviour
     //static variable means the value is the same for all the objects of this class type and the class itself
     public static Bottle instance; //this static var will hold the Singleton
 
-    private void Awake()
-    {
-        if (instance == null) //instance hasn't been set yet
-        {
-            instance = this; //set instance to this object
-            DontDestroyOnLoad(gameObject); //Dont Destroy this object when you load a new scene
-        }
-        else
-        { //if the instance is already set to an object
-            Destroy(gameObject); //destroy this new object, so there is only ever one
-        }
-    }
 
     // Start is called before the first frame update
     void Start() //setup
