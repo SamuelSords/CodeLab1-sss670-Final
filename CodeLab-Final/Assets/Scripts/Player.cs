@@ -39,7 +39,10 @@ public class Player : MonoBehaviour
 
         if (transform.position.x > 1 && transform.position.x < 4 && transform.position.y > 2 && transform.position.y < 4)
         {
-            startText.GetComponent<Text>().enabled = true;
+            if (startText != null)
+            {
+                startText.GetComponent<Text>().enabled = true;
+            }
         }
     }
 }

@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 392611580}
   - component: {fileID: 392611581}
   m_Layer: 0
-  m_Name: bottle
+  m_Name: empty-bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,7 +227,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b63d7b5513074f044b6d3f36c251f406, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -235,7 +235,7 @@ SpriteRenderer:
   m_Size: {x: 3.55, y: 3.58}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &392611577
@@ -250,7 +250,7 @@ Transform:
   m_LocalScale: {x: -0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &392611578
 MonoBehaviour:
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392611575}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 196be6b1fcf478641819d5765921fbfa, type: 3}
   m_Name: 
@@ -315,6 +315,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988f8e43d5cf2114983d1dc7c99dbb07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite1: {fileID: 21300000, guid: b63d7b5513074f044b6d3f36c251f406, type: 3}
+  sprite2: {fileID: 21300000, guid: 5b25adf8e53fa5647aca1f3f464008f8, type: 3}
+  light2: 0
 --- !u!1001 &506059250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1568,7 +1571,7 @@ PrefabInstance:
     - target: {fileID: 650241349707642586, guid: c0f3a5b7be988654e97cfa3ea05c6621,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 650241349707642586, guid: c0f3a5b7be988654e97cfa3ea05c6621,
         type: 3}
@@ -3443,7 +3446,7 @@ Transform:
   m_LocalScale: {x: -4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1674566294
 GameObject:

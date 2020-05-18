@@ -8,9 +8,10 @@ public class GameManager : MonoBehaviour
 {
     public Text fullText;
     public Text startText;
-    public int light1 = 0;
+    public int light1;
     public static GameManager instance;
     public GameObject lite;
+    private bool complete;
 
 
 
@@ -30,13 +31,18 @@ public class GameManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {}
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        light1 = 0;
+    }
 
     // Update is called once per frame
     void Update()
     {
-
-        light1 = GameObject.Find("bottle").GetComponent<Bottle>().light;
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("StarGame"))
+        {
+            light1 = GameObject.Find("bottle").GetComponent<Bottle>().light;
+        }
 
         fullText.text = light1 + "% Full";
 
@@ -46,10 +52,11 @@ public class GameManager : MonoBehaviour
             startText.GetComponent<Text>().enabled = false;
         }
 
-        if (light1 >= 100)
+        if (light1 >= 100 && complete == false)
         {
 
             SceneManager.LoadScene("Level1");
+            complete = true;
         }
 
 
