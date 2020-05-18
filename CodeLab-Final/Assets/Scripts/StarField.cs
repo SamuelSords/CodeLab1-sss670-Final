@@ -8,7 +8,7 @@ public class StarField : MonoBehaviour
     public float intervalMax = 0.5f; //max time to span new star
     public float numStars = 10; //how many stars to span at once
 
-    // Start is called before the first frame update
+
     void Start()
     {
         Invoke("SpawnStar", intervalMin); //call SpawnStar after intervalMin time

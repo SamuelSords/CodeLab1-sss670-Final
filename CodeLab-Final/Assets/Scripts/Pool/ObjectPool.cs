@@ -2,44 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//abstract class
-//can not be implemented, must be subclassed to be used
+//abstract parent to starpool and collect pool
 public abstract class ObjectPool : MonoBehaviour
 {
-    //Stack for holding old GameObjects
-    //FIFO - First In First Out
+    //make a stack of game objects
     protected Stack<GameObject> pool = new Stack<GameObject>();
 
-    //Get a GameObject
+    //acquire one of these objects from starpool or collect pool
     public GameObject Get()
     {
-        GameObject result; // var for GameObject
+        GameObject result; // name the object
 
-        if (pool.Count == 0) //if the pool is empty
+        if (pool.Count == 0) //when there is nothing
         {
-            result = GetNewObject(); //create a new object
+            result = GetNewObject(); //make something
         }
         else
-        { //otherwise
-            result = pool.Pop(); //get the top object out of the stack
-            //print the total number of objects and items in the pool
-            //print("Num Objects:  " + transform.childCount + " Pool Size: " + pool.Count);
+        { //if there is something
+            result = pool.Pop(); //get it
         }
 
-        result.transform.parent = this.transform; //parent the object under the GameObject w/ the Pool
+        result.transform.parent = this.transform; //move the object to the parent, star pool or collect pool
 
-        result.SetActive(true); //turn object on
-        return result; //return the object
+        result.SetActive(true); //activate the object
+        return result; //send it
     }
 
-    //abstract function, all children must implement this or be subclasses
+    //abstract function that changes depending on how star pool or collect pool writes it
     protected abstract GameObject GetNewObject();
 
-    //Put a GameObject into the pool
+    //capture the object and return it to pool
     public void Push(GameObject used)
     {
-        used.SetActive(false); //turn off the GameObject
-        pool.Push(used); //put it on top of the stack to be reused
+        used.SetActive(false); //deactivate it
+        pool.Push(used); //place the object into the stack again
     }
 
 }

@@ -4,66 +4,66 @@ using UnityEngine;
 
 public class CollectStars : MonoBehaviour
 {
-    public float yRange; //random range for star pos on the x axis
+    public float yRange; //random range for placig star on y axis
 
-    public int lightValue = 1;
+    public int lightValue = 1; //this is the value for every star that hits the bottle
 
-    private bool caught;
+    private bool caught; //boolean to determine if the star has been caught or not
 
 
-    const float MIN_SPEED = 0.05f; //min speed
-    const float MAX_SPEED = 0.15f; //max speed
-    const float MAX_X = 12; //where to start star
-    const float MIN_X = -10; //wher to recycle star
+    const float MIN_SPEED = 0.05f; //minimum speed
+    const float MAX_SPEED = 0.15f; //maximum speed
+    const float MAX_X = 12; //where to start star on the x axis
+    const float MIN_X = -10; //where the star should be recycled on the x axis
 
-    float speed;
-    private Vector3 scaleChange;
+    float speed; //float variable to hold random speed range
 
+    private Vector3 scaleChange; //Vector3 that determines how fast the stars shrink
+
+    //if a collision is triggered
     public void OnTriggerEnter2D(Collider2D Collision)
     {
+        //from the bottle script, find the value of light and increase that value
         Bottle bottle = Collision.GetComponent<Bottle>();
 
-        if (bottle != null)
+        if (bottle != null) //if it exists
         {
-            bottle.light += lightValue;
+            bottle.light += lightValue; //increase light based on this stars light value
         }
 
-        transform.position = Collision.GetComponent<Bottle>().transform.position;
-        transform.localScale = transform.localScale;
+        transform.position = Collision.GetComponent<Bottle>().transform.position; //move the star to be positioned inside the bottle
+        transform.localScale = transform.localScale; //make the local scale equal itself
 
-        caught = true;
+        caught = true; //this star is now caught
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        Reset(); //setup star
+        Reset(); //set the star
     }
 
     public void Reset()
     {
-        speed = -Random.Range(MIN_SPEED, MAX_SPEED); //give it a random speed in range
+        speed = -Random.Range(MIN_SPEED, MAX_SPEED); //give random value to speed based on max speed and minimum speed
 
-        scaleChange = new Vector3(.002f, .002f, .002f);
+        scaleChange = new Vector3(.002f, .002f, .002f); //set the star shrink value
 
-        transform.localScale = new Vector3(.6f, .6f, .6f);
-        //set random star pos
+        transform.localScale = new Vector3(.6f, .6f, .6f); //this is the starting size of the star
+
         transform.position = new Vector2(
-            MAX_X, Random.Range(-2, yRange));
+            MAX_X, Random.Range(-2, yRange)); //this is setting the random position of the star
     }
 
-    // Update is called once per frame
     void Update()
     {
 
-        if (caught == false)
+        if (caught == false) //if the star has not been caught
         {
-            //move star by speed
             transform.position = new Vector3(
                 transform.position.x + speed,
-                transform.position.y);
+                transform.position.y); //move the star at the speed it was given
 
-            transform.localScale -= scaleChange;
+            transform.localScale -= scaleChange; //make the star shrink
         }
 
         //if the star has gone to far
@@ -71,10 +71,10 @@ public class CollectStars : MonoBehaviour
         {
             CollectPool.instance.Push(gameObject); //recycle it into the pool
         }
-
+        //if the star has gotten too small
         if (transform.localScale.x < 0f)
         {
-            CollectPool.instance.Push(gameObject);
+            CollectPool.instance.Push(gameObject); //recycle it into the pool
         }
     }
 }

@@ -6,36 +6,37 @@ using UnityEngine.SceneManagement;
 
 public class Empty : MonoBehaviour
 {
-    public Sprite sprite1;
-    public Sprite sprite2;
+    public Sprite sprite1; //this will be where i hold the empty bottle sprite
+    public Sprite sprite2; //this will be where i hold the full bottle sprite
 
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer; //make a sprite renderer accessible
 
-    public int light2;
+    public int light2; //this is so this object can hold the value of light and inherit it from the game manager
 
-    // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>(); // we are accessing the SpriteRenderer that is attached to the Gameobject
-        if (spriteRenderer.sprite == null) // if the sprite on spriteRenderer is null then
-            spriteRenderer.sprite = sprite1; // set the sprite to sprite1
+        spriteRenderer = GetComponent<SpriteRenderer>(); // access the sprite renderer
+        if (spriteRenderer.sprite == null) // if the sprite on spriteRenderer does not exist
+            spriteRenderer.sprite = sprite1; // set the sprite to the empty bottle
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //find the value of light from the game manager and inherit that value in light2
         light2 = GameObject.Find("GameManager").GetComponent<GameManager>().light1;
+
+
         if (light2 >= 100 && spriteRenderer.sprite == sprite1) // If the sprite is the empty bottle and the light is full, change it to the full bottle
         {
-            ChangeTheSprite(); // call method to change sprite
+            ChangeTheSprite(); // call function to change sprite
         }
     }
-
+    //function to change sprite
     void ChangeTheSprite()
     {
-        if (spriteRenderer.sprite == sprite1) // if the spriteRenderer sprite = sprite1 then change to sprite2
+        if (spriteRenderer.sprite == sprite1) // if the bottle is empty when this function is called
         {
-            spriteRenderer.sprite = sprite2;
+            spriteRenderer.sprite = sprite2; //now it is full
         }
     }
 }

@@ -6,12 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public Text fullText;
-    public Text startText;
-    public int light1;
-    public static GameManager instance;
-    public GameObject lite;
-    private bool complete;
+    public Text fullText; //variable text object for how full the bottle is
+    public Text startText; //variable text object that is enable and disable to cue player to press space to begin game
+    public int light1; //variable integer that holds the light value for game manager
+    public static GameManager instance; //this script is now accessible
+    private bool complete; //boolean that makes it so i only reload level1 one time
 
 
 
@@ -29,34 +28,33 @@ public class GameManager : MonoBehaviour
     }
 
 
-    // Start is called before the first frame update
     void Start()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        light1 = 0;
+        Scene currentScene = SceneManager.GetActiveScene(); //get the current scene
+        light1 = 0; //light value in game manager starts at 0
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("StarGame"))
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("StarGame")) //if we are playing the star game
         {
-            light1 = GameObject.Find("bottle").GetComponent<Bottle>().light;
+            light1 = GameObject.Find("bottle").GetComponent<Bottle>().light; //change the value of light1 by the value of light held in the bottle
         }
 
-        fullText.text = light1 + "% Full";
+        fullText.text = light1 + "% Full"; //change the fulltext variable text object to include how much light has been caught
 
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space")) //if the space bar has been pressed
         {
-            SceneManager.LoadScene("StarGame");
-            startText.GetComponent<Text>().enabled = false;
+            SceneManager.LoadScene("StarGame"); //load the star game
+            startText.GetComponent<Text>().enabled = false; //disable the startText text object so it doesnt load on the game
         }
 
-        if (light1 >= 100 && complete == false)
+        if (light1 >= 100 && complete == false) //if the value of light has reached 100 and this action has never been completed
         {
 
-            SceneManager.LoadScene("Level1");
-            complete = true;
+            SceneManager.LoadScene("Level1"); //reload level1
+            complete = true; //this action has now been commpleted and wont be done again
         }
 
 

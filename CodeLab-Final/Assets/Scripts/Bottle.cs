@@ -4,45 +4,41 @@ using UnityEngine;
 
 public class Bottle : MonoBehaviour
 {
-    public float force = 5; //public var for force amount
+    public float force = 5; //variable of force that effects object movement
 
-    public int light = 0;
+    public int light = 0; //variable that stores how many stars have been collected
 
     Rigidbody2D rb; //var for the Rigidbody2D
 
-    //static variable means the value is the same for all the objects of this class type and the class itself
-    public static Bottle instance; //this static var will hold the Singleton
+    public static Bottle instance; //this script is now accessible
 
-
-    // Start is called before the first frame update
     void Start() //setup
     {
         
 
-        rb = GetComponent<Rigidbody2D>(); //get the Rigidbody2D  off of this gameObject
+        rb = GetComponent<Rigidbody2D>(); //acquire the rigid body
 
     }
 
-    // Update is called once per frame
-    void Update() //draw
+    void Update() //function that is called every frame
     {
         
-        if (Input.GetKey("up"))//if W is pressed
+        if (Input.GetKey("up"))//if up is pressed
         {
             rb.AddForce(Vector2.up * force); //apply to the up mult by the "force" var
         }
 
-        if (Input.GetKey("down"))//if S is pressed
+        if (Input.GetKey("down"))//if down is pressed
         {
             rb.AddForce(Vector2.down * force); //apply to the down mult by the "force" var
         }
 
-        if (Input.GetKey("left"))//if A is pressed
+        if (Input.GetKey("left"))//if left is pressed
         {
             rb.AddForce(Vector2.left * force); //apply to the left mult by the "force" var
         }
 
-        if (Input.GetKey("right")) //if D is pressed
+        if (Input.GetKey("right")) //if right is pressed
         {
             rb.AddForce(Vector2.right * force); //apply to the right mult by the "force" var
         }

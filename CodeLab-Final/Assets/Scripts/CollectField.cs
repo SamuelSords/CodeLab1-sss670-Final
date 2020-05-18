@@ -6,9 +6,8 @@ public class CollectField : MonoBehaviour
 {
     public float intervalMin = 0.1f; //min time to span new star
     public float intervalMax = 0.5f; //max time to span new star
-    public float numStars = 10; //how many stars to span at once
+    public float numStars = 10; //how many stars to spawn at once
 
-    // Start is called before the first frame update
     void Start()
     {
         Invoke("SpawnCollectable", intervalMin); //call SpawnStar after intervalMin time
@@ -16,13 +15,13 @@ public class CollectField : MonoBehaviour
 
     void SpawnCollectable()
     {
-        //generate numStars stars
+        //depending on numStars instantiate these stars
         for (int i = 0; i < numStars; i++)
         {
             GameObject Collectable = CollectPool.instance.GetCollectable();
         }
 
-        //call SpawnStar again after a random amount of time between min and max
+        //do this again between the set time interval
         Invoke("SpawnCollectable", Random.Range(intervalMin, intervalMax));
     }
 }
